@@ -26,6 +26,7 @@ interface EventData {
   name: string;
   date: string; // ISO date string
   end_date: string; // ISO date string
+  end_time: string;
   time: string;
   duration: string;
   category: {
@@ -60,7 +61,9 @@ const DetailsPageClient = () => {
   const [english, setEnglish] = useState(true);
   const { data, isLoading } = useGetEventByIdQuery(id);
   const eventData = data?.data as EventData;
-  console.log(eventData);
+
+  // console.log(eventData);
+
   return isLoading ? (
     <Spiner />
   ) : (
@@ -116,7 +119,7 @@ const DetailsPageClient = () => {
           </p>
           <p className="mt-2">
             <strong>End date</strong> {eventData?.end_date?.split("T")?.[0]} at{" "}
-            {eventData?.time}
+            {eventData?.end_time}
             {/* {moment(eventData?.end_date).format("MMMM Do")} at {eventData?.time} */}
           </p>
           <div className="flex justify-start items-center gap-2 mt-2 text-white">
